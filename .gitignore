@@ -1,0 +1,30 @@
+#Compiled class file
+*.class
+
+#Log file
+*.log
+
+#BlueJ files
+*.ctxt
+
+#Mobile tools for Java
+.mtj.tmp/
+
+#package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+#Virtual machine crash logs
+hss_err_pid*
+
+*.iml
+*.xml
+*.html
+
+ApiKey.java
+
+
