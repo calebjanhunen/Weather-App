@@ -14,6 +14,7 @@ public class HTTPGetRequest {
     public HTTPGetRequest() {
         location = null;
         weatherInfo = null;
+        sendGet();
     }
 
     /**
@@ -23,12 +24,13 @@ public class HTTPGetRequest {
     public HTTPGetRequest(String location) {
         this.location = location;
         weatherInfo = null;
+        sendGet();
     }
 
     /**
      * Sends the get request with location to the weather api.
      */
-    public void sendGet() {
+    private void sendGet() {
         URL url = null;
         HttpURLConnection con = null;
         Scanner sc = null;
@@ -46,12 +48,10 @@ public class HTTPGetRequest {
             con = (HttpURLConnection)url.openConnection();//typecast url object into httpurlconnection object
         } catch (IOException e) {
             e.printStackTrace();
-        } 
+        }
 
         try {
-            if (con !=null) {
-                con.setRequestMethod("GET"); //Set request type
-            }
+            con.setRequestMethod("GET"); //Set request type
         } catch (ProtocolException e) {
             e.printStackTrace();
         }
@@ -65,16 +65,12 @@ public class HTTPGetRequest {
 
         while(sc.hasNext()) {
             jsonFormat.append(sc.nextLine());
-            jsonFormat.append("\n");
-            System.out.println(jsonFormat);
         }
 
         sc.close();
         con.disconnect();
 
         weatherInfo = jsonFormat.toString();
-
-        System.out.println(weatherInfo);
 //        try{
 //            BufferedWriter writer = new BufferedWriter(new FileWriter(".\\test.json"));
 //            writer.write(weatherInfo);
@@ -101,5 +97,13 @@ public class HTTPGetRequest {
      */
     public String getLocation() {
         return location;
+    }
+
+    /**
+     * Returns weatherInfo string.
+     * @return weatherInfo (string)
+     */
+    public String getWeatherInfo() {
+        return weatherInfo;
     }
 }
